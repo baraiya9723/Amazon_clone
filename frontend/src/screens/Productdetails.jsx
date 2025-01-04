@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -9,22 +9,34 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
-import products from "../products";
 import { Link } from "react-router-dom";
-
+import Ratingscreen from "./Ratingscreen"
+import axios from "axios";
 const Productdetails = () => {
-  const { id } = useParams(); // Get product ID from URL
-  const product = products.filter((p) => p._id == parseInt(id))[0]; // Find product by ID
-  console.log(id, product);
+  const { id } = useParams(); 
   const [quantity, setQuantity] = useState(1); // State to track quantity
-
-  if (!product) {
-    return <h1>Product not found!</h1>;
-  }
+  const [product, setProduct] = useState({});
 
   const handleAddToCart = () => {
     alert(`Added ${quantity} ${product.name}(s) to the cart!`);
   };
+  useEffect(() => {
+    const fetchdata = async () => {
+      try{
+        const { data } = await axios.get(`http://localhost:8000/products/${id}`);
+        console.log(data)
+        setProduct(data);
+
+      }catch(err){
+        console.log(err.message, "err data feath time")
+      }
+    };
+    fetchdata()
+  }, []);
+
+  if (!product) {
+    return <h1>Product not found!</h1>;
+  }
 
   return (
     <Container className="my-5">
@@ -45,9 +57,9 @@ const Productdetails = () => {
               </Card.Text>
               <Card.Text>
                 <strong>Rating: </strong>
-                {"⭐".repeat(Math.round(product.rating))} ({product.rating}/5)
+                <Ratingscreen  value={product.rating} text={product.numReviews}/>
               </Card.Text>
-              <Form >
+              <Form>
                 <Form.Group controlId="quantity">
                   <Form.Label>Quantity</Form.Label>
                   <Form.Control
@@ -66,11 +78,14 @@ const Productdetails = () => {
                 >
                   Add to Cart
                 </Button>
-                 <Link to="/">
+                <Link to="/">
                   <Button
-                  variant="primary"
-                  style={{marginLeft:"20px"}}
-                  className="mt-3">Go Back</Button>
+                    variant="primary"
+                    style={{ marginLeft: "20px" }}
+                    className="mt-3"
+                  >
+                    Go Back
+                  </Button>
                 </Link>
               </Form>
             </Card.Body>

@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import products from '../products';
 import Productscreen from './Productscreen';
+import axios from 'axios';
 function Homescreen() {
+  const [products,setProducts] = useState([]);
+  useEffect(()=>{
+   const fetchdata = async()=>{
+    try{
+    const prodducts = await axios.get('http://localhost:8000/products')
+    setProducts(prodducts?.data)
+    }catch(err){
+     console.log(err?.message,'err while fetching data')
+    }
+   }
+   fetchdata()
+  },[])
   return (
     <>
-      <Container>
+      <Container style={{marginTop:'30px'}}>
         <Row>
           {
               products.map((product)=>(

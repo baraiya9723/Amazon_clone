@@ -12,7 +12,7 @@ function App() {
       <main>
         {/* <Container> */}
         <Header />
-        <h1>Amazon app</h1>
+        {/* <h1>Amazon app</h1> */}
         <Routes>
           <Route path="/" element={<Homescreen />} />
           <Route path="/cart" element={<Cartscreen />} />

@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Ratingscreen from './Ratingscreen';
 import { Link } from 'react-router-dom';
-
 function Productscreen({product}) {
     return (
     <Card style={{ width: '18rem' }}>
