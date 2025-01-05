@@ -19,8 +19,8 @@ require('dotenv').config();
 app.use(cors());
 
 app.use("/api", productRoutes);
-app.use("/api/users", usersRoutes);
-app.use("/api/orders", orderRoutes);
+// app.use("/api/users", usersRoutes);
+// app.use("/api/orders", orderRoutes);
   
 PORT = 8000
 connectDb().then(()=>{app.listen(process.env.PORT ||8000, () => {
