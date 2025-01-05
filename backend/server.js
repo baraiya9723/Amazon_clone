@@ -1,8 +1,11 @@
 const express = require('express');
 const products = require('./data/products.js')
 const cors = require('cors');
-const connect = require('./config/db.js');
 const connectDb = require('./config/db.js');
+
+const productRoutes = require("./routes/productsRoute");
+const usersRoutes = require("./routes/UsersRoute");
+const orderRoutes = require("./routes/orderRoute");
 
 // conneting to DB 
 
@@ -15,19 +18,9 @@ require('dotenv').config();
 // cors for allow frontend to connect with server 
 app.use(cors());
 
-app.get('/products', (req, res) => {
-  res.status(200).json(products);
-});
-
-app.get('/products/:id', (req, res) => {
-    const product = products.find((product) => req.params.id === product._id); 
-    console.log(req.params.id); 
-    if (product) {
-      res.status(200).json(product);
-    } else {
-      res.status(404).json({ message: 'Product not found' }); 
-    }
-  });
+app.use("/api", productRoutes);
+app.use("/api/users", usersRoutes);
+app.use("/api/orders", orderRoutes);
   
 PORT = 8000
 connectDb().then(()=>{app.listen(process.env.PORT ||8000, () => {
