@@ -7,7 +7,7 @@ function Homescreen() {
   useEffect(()=>{
    const fetchdata = async()=>{
     try{
-    const prodducts = await axios.get('http://localhost:8000/products')
+    const prodducts = await axios.get('http://localhost:8000/api/products')
     setProducts(prodducts?.data)
     }catch(err){
      console.log(err?.message,'err while fetching data')
