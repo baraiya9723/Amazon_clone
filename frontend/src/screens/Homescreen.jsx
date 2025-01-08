@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Productscreen from './Productscreen';
 import axios from 'axios';
+import Counter from "../components/counter";
 function Homescreen() {
   const [products,setProducts] = useState([]);
   useEffect(()=>{
@@ -18,6 +19,7 @@ function Homescreen() {
   return (
     <>
       <Container style={{marginTop:'30px'}}>
+        <Counter/>
         <Row>
           {
               products.map((product)=>(
