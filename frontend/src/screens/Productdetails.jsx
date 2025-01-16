@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Container,
   Row,
@@ -12,19 +12,23 @@ import {
 import { Link } from "react-router-dom";
 import Ratingscreen from "./Ratingscreen"
 import axios from "axios";
+
 const Productdetails = () => {
   const { id } = useParams(); 
+  const navigator = useNavigate()
   const [quantity, setQuantity] = useState(1); // State to track quantity
   const [product, setProduct] = useState({});
+  const dispatch = useDispatch();
 
   const handleAddToCart = () => {
+    dispatch(addToCart(product,quantity));
     alert(`Added ${quantity} ${product.name}(s) to the cart!`);
+    navigator('/cart')
   };
   useEffect(() => {
     const fetchdata = async () => {
       try{
         const { data } = await axios.get(`http://localhost:8000/api/products/${id}`);
-        console.log(data)
         setProduct(data);
 
       }catch(err){
@@ -66,8 +70,8 @@ const Productdetails = () => {
                     type="number"
                     min="1"
                     value={quantity}
+                    style={{backgroundColor:'#2222255c',width: "200px",color:'white'}}
                     onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-                    style={{ width: "100px" }}
                   />
                 </Form.Group>
                 <Button
