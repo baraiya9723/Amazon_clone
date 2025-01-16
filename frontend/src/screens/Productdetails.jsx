@@ -12,6 +12,8 @@ import {
 import { Link } from "react-router-dom";
 import Ratingscreen from "./Ratingscreen"
 import axios from "axios";
+import { addToCart } from "../redux/actions/cartAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const Productdetails = () => {
   const { id } = useParams(); 
