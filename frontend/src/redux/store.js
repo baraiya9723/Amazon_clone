@@ -4,7 +4,7 @@ import rootReducer from './reducers';
 import { loadState, saveState } from '../utils/localStorageUtils';
 
 const preloadedState = loadState(); // Your initial state
-
+console.log("helloredux",preloadedState)
 const store = createStore(
     rootReducer, 
     preloadedState, 

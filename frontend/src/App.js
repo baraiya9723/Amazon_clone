@@ -7,6 +7,9 @@ import Homescreen from "./screens/Homescreen";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Cartscreen from "./screens/Cartscreen";
 import Productdetails from "./screens/Productdetails";
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import ProfileScreen from './screens/ProfileScreen';
 function App() {
   return (
     <Router>
@@ -18,6 +21,10 @@ function App() {
           <Route path="/" element={<Homescreen />} />
           <Route path="/cart" element={<Cartscreen />} />
           <Route path="/product/:id" element={<Productdetails/>} />
+          {/* <Route path="/login" element={<LoginScreen/>} /> */}
+          <Route path="/register" element={<RegisterScreen/>} />
+          <Route path="/profile" element={<ProfileScreen/>} />
+          <Route path="/login" element={<LoginScreen/>} />
         </Routes>
         <Footer />
         {/* </Container> */}
