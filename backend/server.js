@@ -6,20 +6,21 @@ const { errorHandler } = require("./middlewares/errorMiddleware");
 const productRoutes = require("./routes/productsRoute");
 const usersRoutes = require("./routes/UsersRoute");
 const orderRoutes = require("./routes/orderRoute");
-
+const bodyParser = require('body-parser');
 // conneting to DB 
 
 
 const app = express();
 
 // dotenv config 
+app.use(bodyParser.json());
 require('dotenv').config();
 
 // cors for allow frontend to connect with server 
 app.use(cors());
 
 app.use("/api", productRoutes);
-// app.use("/api/users", usersRoutes);
+app.use("/api/users", usersRoutes);
 // app.use("/api/orders", orderRoutes);
   
 app.use(errorHandler)
