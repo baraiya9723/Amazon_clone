@@ -29,7 +29,8 @@ const LoginScreen = () => {
       dispatch(userdetails(response));
       navigator('/')
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
+      alert(error.response.data.message)
     }
     //dispatch
   };
