@@ -36,18 +36,18 @@ const CartScreen = () => {
   };
   return (
     <>
-      <Row style={{display:'flex',flexDirection:'column',justifyContent:'center'}}>
-        <Col >
-          <h1>Shopping Cart</h1>
+      <Row >
+        <Row  >
+          <h1 style={{display:'flex',justifyContent:'center ', margin:'30px'}}>Shopping Cart</h1>
           {cartItems?.length === 0 ? (
             <Message>
               Your Cart is Empty !<Link to="/">Go Back</Link>
             </Message>
           ) : (
-            <ListGroup variant="flush">
+            <ListGroup variant="flush" style={{border:'1px solid black'}}>
               {cartItems?.map((item) => (
                 <ListGroupItem>
-                  <Row>
+                  <Row style={{display:'flex',justifyContent:'center',}}>
                     <Col md={2}>
                       <Image src={item.image} alt={item.name} fluid rounded />
                     </Col>
@@ -87,8 +87,10 @@ const CartScreen = () => {
               ))}
             </ListGroup>
           )}
-        </Col>
-        <Col md={4}>
+        </Row>
+
+      </Row>
+      <Col  style={{display:'flex',justifyContent:'center',margin:'30px'}} >
           <Card>
             <ListGroup variant="flush">
               <ListGroupItem>
@@ -112,7 +114,6 @@ const CartScreen = () => {
             </ListGroup>
           </Card>
         </Col>
-      </Row>
     </>
   );
 };
