@@ -32,7 +32,13 @@ const CartScreen = () => {
   };
 
   const checkout = () => {
-    navigator("/login?redirect=shipping");
+    const user = JSON.parse(localStorage.getItem('reduxState')).user 
+    if(user){
+      navigator("/shipping");
+    }else{
+      alert('pls SIGN IN for shoping ')
+      navigator(`/login`);
+    }
   };
   return (
     <>
@@ -59,17 +65,10 @@ const CartScreen = () => {
                       <Form.Control
                         as="select"
                         value={item.qty}
-                        onChange={(e) =>
-                          dispatch(
-                            addToCart(item.product, Number(e.target.value))
-                          )
-                        }
                       >
-                        {[...Array(item.countInStock).keys()].map((x) => (
-                          <option key={x + 1} value={x + 1}>
-                            {x + 1}
+                          <option key={item.qty} value={item.qty}>
+                            {item.qty}
                           </option>
-                        ))}
                       </Form.Control>
                       <Button
                         type="button"

@@ -23,4 +23,18 @@ export const addToCart = (data,qty) => {
       payload: id,
     };
   };
+
+  export const saveShippingAddress = (data) => {
+    return{
+      type: "CART_SAVE_SHIPPING_ADDRESS",
+      payload: data 
+    }
+  };
+
+  export const savePaymentMethod = (data) => {
+    return{
+      type: "CART_SAVE_PAYMENT_METHOD",
+      payload: data 
+    }
+  };  
   

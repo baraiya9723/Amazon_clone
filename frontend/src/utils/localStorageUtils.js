@@ -9,6 +9,8 @@ export const loadState = () => {
         return {
             cartReducer: {
                 cartItems: persistedState.cart || [], // Map "cart" to "cartReducer"
+                shippingAddress: persistedState.address || [],
+                paymentMethod: persistedState.paymentMethod || '',
             },
             userReducer: {
                 user: persistedState.user || null, // Map "user" to "userReducer"
@@ -30,7 +32,9 @@ export const saveState = (state) => {
         // Persist only specific parts of the state
         const stateToPersist = {
             cart: state.cartReducer.cartItems, // For example, persist only the cart
-            user: state.userReducer.user
+            address: state.cartReducer.shippingAddress,
+            paymentMethod: state.cartReducer.paymentMethod,
+            user: state.userReducer.user,
         };
         const serializedState = JSON.stringify(stateToPersist);
         localStorage.setItem('reduxState', serializedState);

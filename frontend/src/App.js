@@ -12,6 +12,9 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import NotFoundscreen from "./screens/NotFoundscreen";
+import ShippingScreen from "./screens/ShippingScreen";
+import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 function App() {
   return (
     <Router>
@@ -28,6 +31,9 @@ function App() {
 
           {/* Protected Routes */}
           <Route exact path="/profile" element={<ProtectedRoute element={ProfileScreen} />} />
+          <Route exact path="/shipping" element={<ProtectedRoute element={ShippingScreen} />} />
+          <Route exact path="/payment" element={<ProtectedRoute element={PaymentScreen} />} />
+          <Route exact path="/placeorder" element={<ProtectedRoute element={PlaceOrderScreen} />} />
 
           <Route path="*" element={<NotFoundscreen />} />
         </Routes>
